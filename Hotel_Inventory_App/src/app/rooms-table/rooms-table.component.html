@@ -1,0 +1,82 @@
+<!-- Table Component -->
+
+<div class="p-6 text-center">
+    <h2 class="text-4xl font-bold text-amber-800 mb-2">Room List</h2>
+    <div class="flex justify-center items-center gap-2">
+        <span class="h-1 w-16 bg-amber-600"></span>
+        <span class="text-xl text-amber-700">{{hotelName}}</span>
+        <span class="h-1 w-16 bg-amber-600"></span>
+    </div>
+    <p class="mt-2 text-gray-600 italic">Discover Our Luxurious Accommodations</p>
+</div>
+
+<div class="p-6">
+    <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
+        <thead class="bg-amber-800 text-white">
+            <tr>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Room Number</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Room Floor</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Room Price</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Room Type</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Is Booked</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+            <tr *ngFor="let room of rooms" 
+                [ngClass]="room.isBooked ? 'bg-red-50 hover:bg-red-100' : 'bg-green-50 hover:bg-green-100'"
+                class="transition duration-150 ease-in-out border-b border-gray-200"> 
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div class="text-sm font-medium text-gray-900">Room #{{room.roomNumber}}</div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Floor {{room.roomFloor}}</div>
+                    <div class="text-xs text-gray-500">Level {{room.roomFloor}}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-semibold text-amber-800">${{room.roomPrice}}</div>
+                    <div class="text-xs text-gray-500">per night</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-amber-100 text-amber-800">
+                        {{room.roomType}}
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span [ngClass]="room.isBooked ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'" 
+                          class="px-3 py-1 inline-flex items-center text-sm font-medium rounded-full">
+                        <span class="h-2 w-2 mr-2 rounded-full" 
+                              [ngClass]="room.isBooked ? 'bg-red-400' : 'bg-green-400'"></span>
+                        {{room.isBooked ? 'Booked' : 'Available'}}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <h1>Count: {{count}}</h1>
+</div>
+
+<!-- for the purpose of dependency injection -->
+<div>
+    <table>
+        <tbody>
+            <tr *ngFor="let employee of EmployeeNames">
+                <td>{{employee}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+

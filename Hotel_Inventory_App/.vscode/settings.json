@@ -1,0 +1,13 @@
+{
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.enablePreviewFromCodeNavigation": false,
+    "workbench.editor.showTabs": "multiple",
+    "workbench.editor.revealIfOpen": true,
+    "files.hotExit": "onExit",
+    "workbench.editor.closeOnFileDelete": false,
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.limit.enabled": false,
+    "explorer.autoReveal": true,
+    "explorer.openEditors.visible": 9
+} 

@@ -1,0 +1,28 @@
+<!-- Header -->
+<h2>{{title}}</h2>
+<h1 class="bg-gradient-to-r from-amber-700 to-amber-900 text-white text-4xl font-bold py-4 px-6 text-center shadow-lg">
+  ✨ {{hotelName}} ✨
+</h1>
+
+<!-- Count Section -->
+<div class="p-4">
+  <button (click)="increment_count()" class="bg-amber-500 text-white px-4 py-2 rounded-md">Increment Count</button>
+  <div class="mt-2">count: {{count}}</div>
+</div>
+
+<div class="p-4">
+  <button (click)="change_hotel_name()" class="bg-amber-500 text-white px-4 py-2 rounded-md">change_hotel_name</button>
+</div>
+
+
+
+<!-- Components -->
+<app-rooms-table [rooms]="rooms" [hotelName]="hotelName" [count]="count"></app-rooms-table>
+<app-footer [hotelName]="hotelName"></app-footer>
+
+
+
+
+
+
+
