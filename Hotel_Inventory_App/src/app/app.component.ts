@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RoomsTableComponent } from "./rooms-table/rooms-table.component";
 import { FooterComponent } from './footer/footer.component';
 import { HttpClient } from '@angular/common/http';
+import { RoomService } from './services/room.service';
 
-interface Room {
-  roomNumber: number;
+export interface Room {
+  roomId ?: number,
+  roomNumber ?: number;
   roomFloor: number;
   roomPrice: number;
   roomType: string;
@@ -29,34 +31,17 @@ export class AppComponent {
   
   private httpClient = inject(HttpClient);
 
-  constructor() {}
-  ngOnInit() {
-    this.rooms = [
-      {
-        roomNumber: 101,
-        roomFloor: 1,
-        roomPrice: 100,
-        roomType: "Single",
-        isBooked: false
-      },
-      {
-        roomNumber: 202,
-        roomFloor: 2,
-        roomPrice: 150,
-        roomType: "Double",
-        isBooked: true
-      },
-      {
-        roomNumber: 303,
-        roomFloor: 3,
-        roomPrice: 200,
-        roomType: "Suite",
-        isBooked: false
-      }
-    ];
+  constructor(private roomService : RoomService) {}
+  
+  ngOnInit() {  
+    this.roomService.getRoom().subscribe(current_rooms => {
+      this.rooms = current_rooms;
+    })
+    
     this.httpClient.get<string>('http://localhost:8080/name/getTitle', {responseType : 'text' as 'json'}).subscribe(current => {
       this.title = current;
     })
+  
   }
   toggleLogin(): void {
     this.isLoggedIn = !this.isLoggedIn;
@@ -66,5 +51,26 @@ export class AppComponent {
   }
   change_hotel_name(): void {
     this.hotelName = this.hotelNames[Math.floor(Math.random() * this.hotelNames.length)];
+  }
+  addRoom(): void {
+    /*Todo : 
+    - get the room number from the user
+    - get the room floor from the user
+    - get the room price from the user
+    - get the room type from the user
+    - get the isBooked from the user
+    
+      using FormsModule
+    */
+
+    const newRoom : Room = {
+      roomFloor: 3,
+      roomPrice: 200,
+      roomType: "Single",
+      isBooked: false
+    }
+    this.roomService.addRoom(newRoom).subscribe((response) => {
+      this.rooms = [...this.rooms, newRoom];
+    })
   }
 }

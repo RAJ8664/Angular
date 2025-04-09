@@ -7,7 +7,11 @@ import { inject, Injectable } from '@angular/core';
 export class RoomsTableServiceService {
 
   EmployeeNames : Array<string> = [];
+  
   constructor() { }
+  
+  ngOnInit() {}
+  
   getEmployeeNames() {
     this.EmployeeNames.push("John", "Jane", "Jim", "Jill");
     return this.EmployeeNames;

@@ -1,5 +1,6 @@
 package com.raj.roy.Hotel_Inventory_Backend.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,20 +9,26 @@ import jakarta.persistence.Id;
 @Entity
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long roomId;
     private Long roomNumber;
     private Long roomFloor;
     private Long roomPrice;
     private String roomType;
+    @Column(columnDefinition = "TINYINT(1)")
     private Boolean isBooked;
 
     public Room() {}
-    public Room(long roomNumber, long roomFloor, long roomPrice, String roomType, Boolean isBooked) {
+    public Room(long roomId, long roomNumber, long roomFloor, long roomPrice, String roomType, Boolean isBooked) {
+        this.roomId = roomId;
         this.roomNumber = roomNumber;
         this.roomFloor = roomFloor;
         this.roomPrice = roomPrice;
         this.roomType = roomType;
         this.isBooked = isBooked;
+    }
+    public Long getRoomId() {
+        return roomId;
     }
 
     public Long getRoomNumber() {
@@ -62,20 +69,16 @@ public class Room {
     
     public void setIsBooked(Boolean isBooked) {
         this.isBooked = isBooked;
-    }      
+    }  
+
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
+    }
 
     @Override   
     public String toString() {
-        return "Room [roomNumber=" + roomNumber + ", roomFloor=" + roomFloor + ", roomPrice=" + roomPrice + ", roomType="
-                + roomType + ", isBooked=" + isBooked + "]";
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Room current_room = (Room) obj;
-        return current_room.roomNumber == roomNumber && current_room.roomFloor == roomFloor && current_room.roomPrice == roomPrice && current_room.roomType.equals(roomType) && current_room.isBooked == isBooked;
+        return "Room [roomId=" + roomId + ", roomNumber=" + roomNumber + ", roomFloor=" + roomFloor + ", roomPrice="
+                + roomPrice + ", roomType=" + roomType + ", isBooked=" + isBooked + "]";
     }
 }
 
