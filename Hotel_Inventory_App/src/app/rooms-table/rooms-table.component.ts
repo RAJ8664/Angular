@@ -14,22 +14,33 @@ import { Room } from '../app.component';
   styleUrl: './rooms-table.component.css'
 })
 export class RoomsTableComponent {
-  @Input() rooms: Array<Room> = [];
+ rooms: Array<Room> = [];
   @Input() hotelName: string = '';
   @Input() count: number = 0;
 
-  //for the purpose of dependency injection check the service file;
-  EmployeeNames : Array<string> = [];
   constructor(private roomsTableService : RoomsTableServiceService) {}
+  
   ngOnInit() {
-    this.EmployeeNames = this.roomsTableService.getEmployeeNames();
+    if (this.rooms.length == 0) this.roomsTableService.getRoom().subscribe((current_rooms : Array<Room>) => {
+      this.rooms = current_rooms;
+    });
   }
+
+  addRoom() {
+    const newRoom : Room = {
+      roomFloor : 1,
+      roomPrice : 900,
+      roomType : "Single",
+      isBooked : false
+    }
+    this.roomsTableService.addRoom(newRoom).subscribe((current_rooms : Array<Room>) => {
+      this.rooms = current_rooms;
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['count']) {
       console.log("Count changed: ", changes['count'].currentValue);
-    }
-    else if (changes['rooms']) {
-      console.log("Rooms changed: ", changes['rooms'].currentValue);
     }
     else if (changes['hotelName']) {
       console.log("Hotel name changed: ", changes['hotelName'].currentValue);

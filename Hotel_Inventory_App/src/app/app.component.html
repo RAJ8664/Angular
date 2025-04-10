@@ -1,29 +1,18 @@
-<!-- Header -->
-<h2>{{title}}</h2>
-<h1 class="bg-gradient-to-r from-amber-700 to-amber-900 text-white text-4xl font-bold py-4 px-6 text-center shadow-lg">
-  ✨ {{hotelName}} ✨
-</h1>
 
-<!-- Count Section -->
-<div class="p-4">
-  <button (click)="increment_count()" class="bg-amber-500 text-white px-4 py-2 rounded-md">Increment Count</button>
-  <div class="mt-2">count: {{count}}</div>
-</div>
-
-<div class="p-4">
-  <button (click)="change_hotel_name()" class="bg-amber-500 text-white px-4 py-2 rounded-md">change_hotel_name</button>
-</div>
-
-<div class="p-4">
-  <button (click)="addRoom()" class="bg-amber-500 text-white px-4 py-2 rounded-md">Add Room</button>
+<div class="flex justify-center gap-4 p-4">
+    <button (click)="goToHomePage()" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 font-medium flex items-center">
+        <span class="mr-2">🏠</span>HomePage
+    </button>
+    <button routerLink="/rooms_table" routerLinkActive="ring-2 ring-purple-300" [routerLinkActiveOptions]="{ exact: true }" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 font-medium flex items-center">
+        <span class="mr-2">🛏️</span>Rooms Table
+    </button>
+    <button routerLink="/footer" routerLinkActive="ring-2 ring-purple-300" [routerLinkActiveOptions]="{ exact: true }" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 font-medium flex items-center">
+        <span class="mr-2">📄</span>Footer
+    </button>
 </div>
 
 
-
-<!-- Components -->
-<app-rooms-table [rooms]="rooms" [hotelName]="hotelName" [count]="count"></app-rooms-table>
-<app-footer [hotelName]="hotelName"></app-footer>
-
+<router-outlet />
 
 
 
