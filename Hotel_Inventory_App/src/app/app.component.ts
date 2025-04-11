@@ -1,10 +1,7 @@
 import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RoomsTableComponent } from "./rooms-table/rooms-table.component";
-import { FooterComponent } from './footer/footer.component';
 import { RoomService } from './services/room.service';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { HomepageComponent } from "./homepage/homepage.component";
 import { Router } from '@angular/router';
 
 export interface Room {
@@ -19,7 +16,7 @@ export interface Room {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RoomsTableComponent, FooterComponent, RouterOutlet, RouterLink, RouterLinkActive, HomepageComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

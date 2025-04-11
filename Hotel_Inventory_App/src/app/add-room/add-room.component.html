@@ -7,12 +7,32 @@
       {{ success_message }}
     </p>
   </div>
+  <div *ngIf="error_message" class="mt-4 p-3 bg-red-100 text-red-800 rounded-md text-center">
+    <p class="flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+      {{ error_message }}
+    </p>
+  </div>
   <div class="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md">
   <h2 class="text-2xl font-bold text-amber-800 mb-6 text-center">Add New Room</h2>
-  <form class="space-y-4" (ngSubmit)="addRoom()">
+  <form #form="ngForm" class="space-y-4" (ngSubmit)="addRoom()" novalidate>
     <div class="space-y-2">
       <label for="floor" class="block text-sm font-medium text-gray-700">Floor Number</label>
-      <input id="floor" type="number" name="roomFloor" placeholder="Enter floor number" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" [(ngModel)]="current_room.roomFloor">
+      <input 
+        id="floor" 
+        type="number" 
+        name="roomFloor" 
+        #roomFloor="ngModel"
+        required
+        placeholder="Enter floor number" 
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" 
+        [ngClass]="{'border-red-500': roomFloor.invalid && (roomFloor.dirty || roomFloor.touched)}"
+        [(ngModel)]="current_room.roomFloor">
+      <div *ngIf="roomFloor.invalid && (roomFloor.dirty || roomFloor.touched)" class="text-red-500 text-xs mt-1">
+        <div *ngIf="roomFloor.errors?.['required']">Floor number is required.</div>
+      </div>
     </div>
 
     <div class="space-y-2">
@@ -21,37 +41,79 @@
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <span class="text-gray-500">$</span>
         </div>
-        <input id="price" type="number" name="roomPrice" placeholder="Enter price per night" class="w-full pl-7 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" [(ngModel)]="current_room.roomPrice">
+        <input
+          id="price" 
+          type="number" 
+          name="roomPrice" 
+          #roomPrice="ngModel"
+          required
+          placeholder="Enter price per night" 
+          class="w-full pl-7 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" 
+          [ngClass]="{'border-red-500': roomPrice.invalid && (roomPrice.dirty || roomPrice.touched)}"
+          [(ngModel)]="current_room.roomPrice">
+      </div>
+      <div *ngIf="roomPrice.invalid && (roomPrice.dirty || roomPrice.touched)" class="text-red-500 text-xs mt-1">
+        <div *ngIf="roomPrice.errors?.['required']">Room price is required.</div>
       </div>
     </div>
 
     <div class="space-y-2">
       <label for="type" class="block text-sm font-medium text-gray-700">Room Type</label>
-      <select id="type" name="roomType" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" [(ngModel)]="current_room.roomType">
+      <select
+        id="type" 
+        name="roomType" 
+        #roomType="ngModel"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" 
+        [ngClass]="{'border-red-500': roomType.invalid && (roomType.dirty || roomType.touched)}"
+        [(ngModel)]="current_room.roomType">
         <option value="" disabled>Select room type</option>
         <option value="Single">Single</option>
         <option value="Double">Double</option>
         <option value="Suite">Suite</option>
         <option value="Deluxe">Deluxe</option>
       </select>
+      <div *ngIf="roomType.invalid && (roomType.dirty || roomType.touched)" class="text-red-500 text-xs mt-1">
+        <div *ngIf="roomType.errors?.['required']">Room type is required.</div>
+      </div>
     </div>
 
     <div class="space-y-2">
       <label class="block text-sm font-medium text-gray-700">Availability Status</label>
       <div class="flex items-center space-x-4">
         <label class="inline-flex items-center">
-          <input type="radio" name="isBooked" [value]="false" class="form-radio text-amber-600" [(ngModel)]="current_room.isBooked">
+          <input
+            type="radio" 
+            name="isBooked" 
+            #isBooked="ngModel"
+            required
+            [value]="false" 
+            class="form-radio text-amber-600" 
+            [(ngModel)]="current_room.isBooked">
           <span class="ml-2">Available</span>
         </label>
         <label class="inline-flex items-center">
-          <input type="radio" name="isBooked" [value]="true" class="form-radio text-amber-600" [(ngModel)]="current_room.isBooked">
+          <input
+            type="radio" 
+            name="isBooked" 
+            required
+            [value]="true" 
+            class="form-radio text-amber-600" 
+            [(ngModel)]="current_room.isBooked">
           <span class="ml-2">Booked</span>
         </label>
+      </div>
+      <div *ngIf="isBooked.invalid && (isBooked.dirty || isBooked.touched)" class="text-red-500 text-xs mt-1">
+        <div *ngIf="isBooked.errors?.['required']">Availability status is required.</div>
       </div>
     </div>
 
     <div class="pt-4">
-      <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+      <button 
+        [disabled]="form.invalid" 
+        type="submit" 
+        class="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
+        [ngClass]="{'opacity-50 cursor-not-allowed': form.invalid}">
         Add Room
       </button>
     </div>

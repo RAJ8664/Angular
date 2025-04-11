@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Room } from '../app.component';
 import { FormsModule } from '@angular/forms';
-import { RoomsTableComponent } from '../rooms-table/rooms-table.component';
 import { RoomsTableServiceService } from '../rooms-table/services/rooms-table-service.service';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddRoomComponent {
   success_message : string = '';
+  error_message : string = '';
   current_room : Room = {
     roomFloor : 0,
     roomPrice : 0,

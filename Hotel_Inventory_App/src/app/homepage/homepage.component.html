@@ -1,30 +1,95 @@
-<h2>{{title}}</h2>
-<h1 class="bg-gradient-to-r from-amber-700 to-amber-900 text-white text-4xl font-bold py-4 px-6 text-center shadow-lg">
-  ✨ {{hotelName}} ✨
-</h1>
-
-<div class="p-4">
-  <button (click)="change_hotel_name()" class="bg-amber-500 text-white px-4 py-2 rounded-md">change_hotel_name</button>
-</div>
-
-
-<!-- Components -->
-<div class="h-screen bg-gradient-to-r from-amber-50 to-amber-300 via-amber-100 flex items-center justify-center">
-  <div class="text-center">
-    <img src="https://picsum.photos/200/300" class="rounded-full mx-auto mb-4 animate-bounce" alt="a random pic">
-    <h1 class="text-6xl font-bold text-amber-800 animate__animated animate__fadeInDownBig">Welcome to {{hotelName}}</h1>
-    <p class="text-2xl text-amber-700 animate__animated animate__fadeInUp">The best place to stay</p>
-    <div class="animate-spin-slow">
-      <svg class="mx-auto h-12 w-12 text-amber-600 animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
+<div class="min-h-screen bg-gradient-to-br from-amber-50 via-amber-100 to-purple-100">
+  <!-- Header Section -->
+  <header class="pt-8 pb-6 px-4">
+    <h2 class="text-center text-lg font-medium text-amber-700 mb-2 animate-fadeIn">{{title}}</h2>
+    <h1 class="bg-gradient-to-r from-amber-700 to-purple-800 text-transparent bg-clip-text text-5xl font-extrabold py-2 text-center drop-shadow-sm transition-all duration-500 hover:scale-105">
+      ✨ {{hotelName}} ✨
+    </h1>
+    <div class="flex justify-center mt-4">
+      <button (click)="change_hotel_name()" class="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        Change Hotel
+      </button>
     </div>
-  </div>
-</div>
-<app-footer [hotelName]="hotelName"></app-footer>
+  </header>
 
-<!-- Examples on using params from Activatedrouter check homepage.component.ts-->
-<div>
-  <p>User with userId = {{user.id}} and name = {{user.name}}</p>
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+      <div class="md:w-1/2 text-center md:text-left">
+        <h1 class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-800 to-purple-700 mb-6 animate-slideInLeft">
+          Welcome to {{hotelName}}
+        </h1>
+        <p class="text-2xl text-amber-700 mb-8 animate-fadeIn">The ultimate luxury experience</p>
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+          <button class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transform transition hover:scale-105 duration-300">
+            Book Now
+          </button>
+          <button class="bg-white hover:bg-gray-100 text-amber-800 font-bold py-3 px-8 rounded-lg shadow-lg border border-amber-300 transform transition hover:scale-105 duration-300">
+            Explore Rooms
+          </button>
+        </div>
+      </div>
+      <div class="md:w-1/2 relative">
+        <div class="absolute -inset-2 bg-gradient-to-r from-amber-400 to-purple-500 rounded-lg blur-lg opacity-75 animate-pulse"></div>
+        <div class="relative bg-white p-2 rounded-lg overflow-hidden">
+          <!-- Animated Rooms Gallery -->
+          <div class="relative h-96 overflow-hidden rounded-lg">
+            <!-- Room 1 -->
+            <div class="absolute inset-0 transform transition-all duration-1000 animate-fadeInSlideUp" style="animation-delay: 0s; animation-duration: 8s; animation-iteration-count: infinite;">
+              <img src="https://img.freepik.com/free-photo/luxury-bedroom-hotel_1150-10836.jpg?semt=ais_hybrid&w=740" class="w-full h-full object-cover" alt="Luxury Suite">
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <h3 class="text-white text-xl font-bold">Luxury Suite</h3>
+                <p class="text-amber-200">$299 per night</p>
+              </div>
+            </div>
+
+            <!-- Room 2 -->
+            <div class="absolute inset-0 transform transition-all duration-1000 animate-fadeInSlideUp" style="animation-delay: 0s; animation-duration: 8s; animation-iteration-count: infinite;">
+              <img src="https://img.freepik.com/free-photo/interior-modern-comfortable-hotel-room_1232-1822.jpg?semt=ais_hybrid&w=740" class="w-full h-full object-cover" alt="Luxury Suite">
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <h3 class="text-white text-xl font-bold">Luxury Suite</h3>
+                <p class="text-amber-200">$299 per night</p>
+              </div>
+            </div>
+
+            <!-- Room 3 -->
+            <div class="absolute inset-0 transform transition-all duration-1000 animate-fadeInSlideUp" style="animation-delay: 0s; animation-duration: 8s; animation-iteration-count: infinite;">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhWjI972UDF4OZSsQRS5kZp4Uya7dy29N1CLikpkdSLZr7CGvHACGszCUMWeIwdqXfpHM&usqp=CAU" class="w-full h-full object-cover" alt="Luxury Suite">
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <h3 class="text-white text-xl font-bold">Luxury Suite</h3>
+                <p class="text-amber-200">$299 per night</p>
+              </div>
+            </div>
+
+            <!-- Room 4 -->
+            <div class="absolute inset-0 transform transition-all duration-1000 animate-fadeInSlideUp" style="animation-delay: 0s; animation-duration: 8s; animation-iteration-count: infinite;">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMdyAPncX9qM_ebc0t9nC1sjq34Z03ulvfJw&s" alt="Luxury Suite">
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <h3 class="text-white text-xl font-bold">Luxury Suite</h3>
+                <p class="text-amber-200">$299 per night</p>
+              </div>
+            </div>
+
+          </div>
+          
+          <!-- Room navigation dots -->
+          <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-white/80 animate-ping" style="animation-delay: 0s; animation-duration: 8s;"></span>
+            <span class="h-2 w-2 rounded-full bg-white/60 animate-ping" style="animation-delay: 2s; animation-duration: 8s;"></span>
+            <span class="h-2 w-2 rounded-full bg-white/60 animate-ping" style="animation-delay: 4s; animation-duration: 8s;"></span>
+            <span class="h-2 w-2 rounded-full bg-white/60 animate-ping" style="animation-delay: 6s; animation-duration: 8s;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- User Info Section -->
+  <div class="bg-white/80 backdrop-blur-sm py-4 px-6 rounded-lg shadow-md max-w-md mx-auto mb-8">
+    <p class="text-amber-800 font-medium">User with userId = {{user.id}} and name = {{user.name}}</p>
+  </div>
+  <app-footer [hotelName]="hotelName"></app-footer>
 </div>

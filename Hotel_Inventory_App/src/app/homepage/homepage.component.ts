@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { RoomService } from '../services/room.service';
 import { HttpClient } from '@angular/common/http';
-import { Room } from '../app.component';
-import { RoomsTableComponent } from "../rooms-table/rooms-table.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -13,7 +11,7 @@ interface User {
 
 @Component({
   selector: 'app-homepage',
-  imports: [RoomsTableComponent, FooterComponent],
+  imports: [FooterComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })

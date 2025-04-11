@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RoomsTableServiceService } from './services/rooms-table-service.service';
 import { Room } from '../app.component';
-import { Router, RouterModule } from '@angular/router';
+import {RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-rooms-table',
