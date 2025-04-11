@@ -4,6 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Room } from '../app.component';
 import { RoomsTableComponent } from "../rooms-table/rooms-table.component";
 import { FooterComponent } from "../footer/footer.component";
+import { ActivatedRoute, Params } from '@angular/router';
+
+interface User {
+  id : number,
+  name : string;
+}
 
 @Component({
   selector: 'app-homepage',
@@ -17,11 +23,18 @@ export class HomepageComponent {
   hotelName = "Hotel Plaza";
   hotelNames : Array<string> = ["Hotel Plaza", "Hotel New York", "Hotel Los Angeles"];
   count : number = 0;
+  
+  user : User = {id : 0, name : ""};
 
-  constructor(private roomService : RoomService, private httpClient : HttpClient) {}
+
+  constructor(private roomService : RoomService, private httpClient : HttpClient, private current_route : ActivatedRoute) {}
   ngOnInit() {  
     this.httpClient.get<string>('http://localhost:8080/name/getTitle', {responseType : 'text' as 'json'}).subscribe(current => {
       this.title = current;
+    })
+    this.current_route.params.subscribe((data : Params) => {
+      this.user.id = data['id'];
+      this.user.name = data['name'];
     })
   }
 
